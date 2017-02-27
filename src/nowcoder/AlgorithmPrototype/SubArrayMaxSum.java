@@ -32,5 +32,19 @@ public class SubArrayMaxSum {
         }
         return res;
     }
+    
+    public static Integer maxSumInRxJava(Integer[] arr) {
+        if (arr == null) return 0;
+        final Integer[] sum = {0};
+        Observable.from(arr)
+                .scan(new Func2<Integer, Integer, Integer>() {
+                    @Override
+                    public Integer call(Integer a, Integer b) {
+                        sum[0] = Math.max(a + b, a);
+                        return a + b > 0 ? a + b : 0;
+                    }
+                }).subscribe();
+        return sum[0];
+    }
 
 }
