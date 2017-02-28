@@ -21,4 +21,19 @@ public class DD_01 {
         }
         System.out.println(ret);
     }
+    
+    private Integer restZeroInRxJava(int n) {
+        return Observable.just(n)
+                .map(new Func1<Integer, Integer>() {
+                    @Override
+                    public Integer call(Integer n) {
+                        int rest = 0;
+                        while (n != 0) {
+                            rest += n / 5;
+                            n /= 5;
+                        }
+                        return rest;
+                    }
+                }).toBlocking().first();
+    }
 }
