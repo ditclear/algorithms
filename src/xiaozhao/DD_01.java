@@ -36,4 +36,18 @@ public class DD_01 {
                     }
                 }).toBlocking().first();
     }
+    //kotlin
+    fun restZeroInRxJava(n: Int): Int? {
+        return Observable.just(n)
+                .map{ n ->
+                    var temp = n
+                    var rest = 0
+                    while (temp !== 0) {
+                        rest += temp!! / 5
+                        temp /= 5
+                    }
+                    rest
+                }.toBlocking().first()
+    }
+
 }
